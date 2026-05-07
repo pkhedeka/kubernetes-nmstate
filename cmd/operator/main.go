@@ -136,6 +136,14 @@ func setupOperatorController(mgr manager.Manager) error {
 		return fmt.Errorf("failed creating NMState CR controller: %w", err)
 	}
 
+	if err = (&controllers.NNCPStatusReconciler{
+		Client:    mgr.GetClient(),
+		APIClient: apiClient,
+		Log:       ctrl.Log.WithName("controllers").WithName("NNCPStatus"),
+	}).SetupWithManager(mgr); err != nil {
+		return fmt.Errorf("failed creating NNCP status controller: %w", err)
+	}
+
 	return nil
 }
 

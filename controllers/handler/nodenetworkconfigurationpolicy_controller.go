@@ -355,7 +355,7 @@ func (r *NodeNetworkConfigurationPolicyReconciler) SetupWithManager(mgr ctrl.Man
 		return errors.Wrap(err, "failed to add watch for NNCPs")
 	}
 
-	// Add watch to enque all NNCPs on nod label changes
+	// Add watch to enqueue all NNCPs on node label changes
 	err = c.Watch(
 		source.Kind(
 			mgr.GetCache(),
